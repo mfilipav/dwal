@@ -22,3 +22,7 @@ It's a fundamental component in distributed systems and databases, ensuring high
 * Replication: The log is replicated across several nodes to ensure data availability even in the face of hardware failures or network partitions.
 
 * Consistency: It helps in achieving consistency across distributed systems through consensus algorithms (like Raft or Paxos) that ensure all copies of the log agree on the current state.
+
+# Implementation notes:
+* directory structure: https://gist.github.com/ayoubzulfiqar/9f1a34049332711fddd4d4b2bfd46096
+* missing modules: `go get github.com/bla/foomodule`
