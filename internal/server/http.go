@@ -54,7 +54,7 @@ type ConsumeResponse struct {
 // Produce handler: write to the log
 func (s *httpServer) handleProduce(w http.ResponseWriter, r *http.Request) {
 	var request ProduceRequest
-	// unmarshal the request into a struct
+	// unmarshal the request into a struct, use streaming decoder
 	err := json.NewDecoder(r.Body).Decode(&request)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)

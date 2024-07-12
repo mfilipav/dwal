@@ -12,9 +12,7 @@ It's a fundamental component in distributed systems and databases, ensuring high
 # Core Principles
 
 * Immutability: Entries in the WAL are immutable once written. This simplifies replication, data recovery, and consistency checks, as logs can be replayed to rebuild state.
-
 * Append-only: New records are always appended at the end of the log. This ensures efficient writes and straightforward replication across nodes.
-
 * Sequential Access: Logs are designed for sequential access, making reads and writes efficient, especially for use cases that naturally fit a time-ordered sequence.
 
 # Functionality
@@ -26,6 +24,14 @@ It's a fundamental component in distributed systems and databases, ensuring high
 # Implementation notes:
 * directory structure: https://gist.github.com/ayoubzulfiqar/9f1a34049332711fddd4d4b2bfd46096
 * missing modules: `go get github.com/bla/foomodule`
+
+## Protobuf
+* Install protobuf runtime, and compile protobuf with:
+```
+go get google.golang.org/protobuf/
+protoc api/v1/*.proto --go_out=. --go_opt=paths=source_relative --proto_path=.
+```
+
 
 # Testing
 To test the simple JSON WAL server, launch it: 
