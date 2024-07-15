@@ -4,7 +4,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/tysonmote/gommap" // use https://pkg.go.dev/github.com/go-mmap/mmap
+	// TODO: use https://pkg.go.dev/github.com/go-mmap/mmap
+	"github.com/tysonmote/gommap"
 )
 
 var (
