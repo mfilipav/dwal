@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc"
 )
 
+// Config carries Commit Log
 type Config struct {
 	CommitLog CommitLog
 }
@@ -15,6 +16,7 @@ type grpcServer struct {
 	*Config
 }
 
+// Register service (via config) to gRPC server
 func newgrpcServer(config *Config) (srv *grpcServer, err error) {
 	srv = &grpcServer{
 		Config: config,
@@ -22,13 +24,14 @@ func newgrpcServer(config *Config) (srv *grpcServer, err error) {
 	return srv, nil
 }
 
+// instantiates a gRPC server, register our service to that server,
 func NewGRPCServer(config *Config) (*grpc.Server, error) {
 	gsrv := grpc.NewServer()
 	srv, err := newgrpcServer(config)
 	if err != nil {
 		return nil, err
 	}
-	api.RegisterLogService(gsrv, &api.LogService{
+	api.RegisterLogServer(gsrv, &api.LogServer{
 		Produce:       srv.Produce,
 		Consume:       srv.Consume,
 		ConsumeStream: srv.ConsumeStream,
@@ -96,7 +99,9 @@ func (s *grpcServer) ConsumeStream(req *api.ConsumeRequest, stream api.Log_Consu
 	}
 }
 
-// Interface
+// Interface for CommitLog, it should do 2 things: Append and Read
+// Allows different CommitLog implementations (fast testing in memory vs
+// production with disk writing)
 type CommitLog interface {
 	Append(*api.Record) (uint64, error)
 	Read(uint64) (*api.Record, error)
