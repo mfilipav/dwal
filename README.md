@@ -25,6 +25,9 @@ It's a fundamental component in distributed systems and databases, ensuring high
 * directory structure: https://gist.github.com/ayoubzulfiqar/9f1a34049332711fddd4d4b2bfd46096
 * missing modules: `go get github.com/bla/foomodule`
 
+## gRPC
+* follow installation instructions here: https://grpc.io/docs/languages/go/quickstart/
+
 ## Protobuf
 * Install protobuf runtime, and compile protobuf with:
 ```
